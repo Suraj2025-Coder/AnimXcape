@@ -894,6 +894,46 @@
                 padding: 8px;
                 text-align: center;
             }
+
+              /* Video Section Styles */
+              .video-section {
+                padding: 40px 20px;
+                background-color: #f8f8f8;
+                text-align: center;
+              }
+              
+              .video-section h2 {
+                font-size: 2rem;
+                margin-bottom: 30px;
+                color: #333;
+              }
+              
+              .video-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+              }
+              
+              .video-card {
+                background-color: #fff;
+                padding: 10px;
+                border-radius: 12px;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                width: 300px;
+              }
+              
+              .video-card video {
+                width: 100%;
+                border-radius: 8px;
+              }
+              
+              .video-card p {
+                margin-top: 10px;
+                font-weight: bold;
+                color: #555;
+              }
+
         
 
 
