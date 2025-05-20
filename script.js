@@ -340,4 +340,48 @@ const dynamicTextElement = document.getElementById('dynamic-text');
                 firstSuggestion.click(); // Trigger the click event on the first suggestion
             }
         }
+
+    // JS FOR THE VIDEO SECTION 
+        document.addEventListener("DOMContentLoaded", () => {
+          const navLinks = document.querySelectorAll("ul li a");
+          const sections = document.querySelectorAll(".content-section");
+      
+          function showSection(id) {
+            // Hide all sections
+            sections.forEach(section => {
+              section.style.display = "none";
+            });
+      
+            // Remove 'active' class from all links
+            navLinks.forEach(link => {
+              link.classList.remove("active");
+            });
+      
+            // Show the selected section
+            const target = document.getElementById(id);
+            if (target) {
+              target.style.display = "block";
+              target.classList.add("fade-in"); // optional animation
+            }
+      
+            // Add active class to the clicked link
+            const clickedLink = document.querySelector(`a[href="#${id}"]`);
+            if (clickedLink) {
+              clickedLink.classList.add("active");
+            }
+          }
+      
+          // Add click event to each nav link
+          navLinks.forEach(link => {
+            link.addEventListener("click", (e) => {
+              e.preventDefault();
+              const targetId = link.getAttribute("href").substring(1);
+              showSection(targetId);
+            });
+          });
+      
+          // Show home section by default
+          showSection("home");
+        });
+      
     });
