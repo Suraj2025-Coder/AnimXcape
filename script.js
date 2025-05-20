@@ -343,50 +343,67 @@ const dynamicTextElement = document.getElementById('dynamic-text');
 
     // JS FOR THE VIDEO SECTION 
         document.addEventListener("DOMContentLoaded", () => {
-          const navLinks = document.querySelectorAll("ul li a");
-          const sections = document.querySelectorAll(".content-section");
+        const navLinks = document.querySelectorAll("ul li a");
+        const sections = document.querySelectorAll(".content-section");
       
-          function showSection(id) {
-            // Hide all sections
-            sections.forEach(section => {
-              section.style.display = "none";
-            });
+        function showSection(id) {
+          // Hide all sections
+          sections.forEach(section => {
+            section.style.display = "none";
+          });
       
-            // Remove 'active' class from all links
-            navLinks.forEach(link => {
-              link.classList.remove("active");
-            });
+          // Remove 'active' class from all links
+          navLinks.forEach(link => {
+            link.classList.remove("active");
+          });
       
-            // Show the selected section
-            const target = document.getElementById(id);
-            if (target) {
-              target.style.display = "block";
-              target.classList.add("fade-in"); // optional animation
-            }
+          // Show the selected section
+          const target = document.getElementById(id);
+          if (target) {
+            target.style.display = "block";
+            target.classList.add("fade-in"); // optional animation
+          }
       
-            // Add active class to the clicked link
-            const clickedLink = document.querySelector(`a[href="#${id}"]`);
-            if (clickedLink) {
-              clickedLink.classList.add("active");
-            }
+          // Add active class to the clicked link
+          const clickedLink = document.querySelector(`a[href="#${id}"]`);
+          if (clickedLink) {
+            clickedLink.classList.add("active");
           }
-
-// this is for the videosection's share and watch button 
-          function toggleDescription(id) {
-            const fullDesc = document.getElementById(id);
-            fullDesc.style.display = fullDesc.style.display === "block" ? "none" : "block";
+        }
+      
+        // ============================
+        // Video Section Functions
+        // ============================
+      
+        // Toggle full description
+        window.toggleDescription = function(id) {
+          const fullDesc = document.getElementById(id);
+          fullDesc.style.display = fullDesc.style.display === "block" ? "none" : "block";
+        };
+      
+        // Share video (with fallback)
+        window.shareVideo = function(url) {
+          if (navigator.share) {
+            navigator
+              .share({
+                title: 'Watch this video!',
+                text: 'Amazing content 👇',
+                url: url,
+              })
+              .catch((error) => console.error('Sharing failed:', error));
+          } else {
+            // Fallback if share not supported
+            navigator.clipboard.writeText(url)
+              .then(() => alert("Link copied to clipboard ✅"))
+              .catch(() => alert("Unable to copy link ❌"));
           }
-        
-          function shareVideo(url) {
-            navigator.share({
-              title: 'Check this video',
-              url: url
-            }).catch(console.error);
-          }
-        
-          function watchOnYouTube(url) {
-            window.open(url, '_blank');
-          }
+        };
+      
+        // Open video in new tab
+        window.watchOnYouTube = function(url) {
+          window.open(url, '_blank');
+        };
+      });
 
 
       
