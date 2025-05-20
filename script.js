@@ -370,6 +370,25 @@ const dynamicTextElement = document.getElementById('dynamic-text');
               clickedLink.classList.add("active");
             }
           }
+
+// this is for the videosection's share and watch button 
+          function toggleDescription(id) {
+            const fullDesc = document.getElementById(id);
+            fullDesc.style.display = fullDesc.style.display === "block" ? "none" : "block";
+          }
+        
+          function shareVideo(url) {
+            navigator.share({
+              title: 'Check this video',
+              url: url
+            }).catch(console.error);
+          }
+        
+          function watchOnYouTube(url) {
+            window.open(url, '_blank');
+          }
+
+
       
           // Add click event to each nav link
           navLinks.forEach(link => {
